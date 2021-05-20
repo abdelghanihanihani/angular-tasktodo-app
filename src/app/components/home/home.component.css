@@ -178,6 +178,7 @@ mat-spinner {
   }
 
   .header-c-text {
-    font-size: 12px;
+    font-size: 0.6rem;
+    margin: auto;
   }
 }
