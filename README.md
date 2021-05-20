@@ -1,4 +1,4 @@
-# Angular Firebase CRUD
+# Angular Firebase TaskTodo
 
 This project is part of an Angular tutorial where we explore how to perform all CRUD operations in an Angular 11 application using cloud FireStore as a database.
 
