@@ -5,6 +5,13 @@ This project is part of an Angular tutorial where we explore how to perform all 
 
 **Please support this project by simply putting a Github star ⭐. 🙏 Thanks**
 
+## Technologies
+
+- Firebase - Cloud Firestore
+- Angular Material
+- Bootstrap
+
+
 ## Installation
 
 Run `npm install` to install all the required dependencies
