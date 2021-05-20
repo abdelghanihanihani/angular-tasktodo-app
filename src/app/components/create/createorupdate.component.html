@@ -1,0 +1,70 @@
+<div class="container createorupdate-content">
+    <div class="row justify-content-around align-items-start">
+        <div class="col-11 col-md-10 align-self-start">
+            <div class="row">
+                <div class="col">
+                    <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
+
+                    <!-- <mat-spinner *ngIf="isLoading" diameter="20" color="primary"></mat-spinner> -->
+                </div>
+            </div>
+            <form [formGroup]="taskFormGroup" (ngSubmit)="saveTask()">
+                <div class="row">
+                    <div class="col">
+                        <mat-form-field appearance="outline" color="primary">
+                            <mat-label>Title</mat-label>
+
+                            <input matInput placeholder="Title" required formControlName="title">
+                            <mat-error *ngIf="hasError('title', 'required')">Title is required
+                            </mat-error>
+                            <mat-error *ngIf="hasError('title', 'maxlength')">Title' length must be less than maximum 20 characters
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <mat-form-field appearance="outline" color="primary">
+                            <mat-label>Duration</mat-label>
+
+                            <input matInput type="number" placeholder="Number of hours" min="1" max="72" formControlName="duration">
+                            <span matSuffix>hours</span>
+
+                        </mat-form-field>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <mat-form-field appearance="outline" color="primary">
+                            <mat-label>Status</mat-label>
+                            <mat-select placeholder="Status" formControlName="status">
+                                <mat-option value="New ">New</mat-option>
+                                <mat-option value="In progress">In progress</mat-option>
+                                <mat-option value="Closed">Closed</mat-option>
+
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <mat-form-field appearance="outline" color="primary">
+                            <mat-label>Description</mat-label>
+
+                            <textarea matInput placeholder="Description" required formControlName="description"></textarea>
+                            <mat-error *ngIf="hasError('description', 'required')">Description is required
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <button [disabled]="!taskFormGroup.valid" class="saveBtn" color="primary" mat-raised-button type="submit">{{tasktoedit?'Update':'Create'}}&nbsp;&nbsp; <mat-icon>{{tasktoedit?'edit':'add_circle'}}</mat-icon> </button>
+
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

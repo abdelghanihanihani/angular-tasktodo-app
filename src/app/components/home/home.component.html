@@ -1,0 +1,93 @@
+<div class="container home-content">
+    <div class="row justify-content-around align-items-start">
+        <div class="col-11 col-md-10 align-self-start">
+
+            <div class="row filter">
+                <div class="col">
+                    <mat-form-field appearance="outline" color="primary">
+                        <mat-label>Filter</mat-label>
+                        <input matInput placeholder="Title" [(ngModel)]="title" (ngModelChange)="onchange($event)">
+                        <mat-icon color="primary" matSuffix>search</mat-icon>
+
+                    </mat-form-field>
+                    <div class="row justify-content-between">
+                        <div class="col-5">
+                            <mat-form-field appearance="outline" color="primary">
+                                <mat-label>From</mat-label>
+
+                                <input matInput [matDatepicker]="picker1" placeholder="mm/jj/aaaa" [min]="FromMinDate" [max]="Today" [(ngModel)]="selectedFromDate" (ngModelChange)="onChangeFromDate($event)">
+                                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                                <mat-datepicker #picker1 color="primary" [startAt]="fromStartDate"></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-5">
+                            <mat-form-field appearance="outline" color="primary">
+                                <mat-label>To</mat-label>
+
+                                <input matInput [matDatepicker]="picker2" placeholder="mm/jj/aaaa" [disabled]="selectedFromDate==null" [min]="selectedFromDate" [max]="Today" [(ngModel)]="todate" (ngModelChange)="onChangeToDate($event)">
+                                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                                <mat-datepicker #picker2></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row spinner">
+                <div class="col">
+                    <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
+
+                    <!-- <mat-spinner *ngIf="isLoading" diameter="20" color="primary"></mat-spinner> -->
+                </div>
+            </div>
+            <div class="row scrollable">
+                <div class="col-sm-12 col-md-6 " *ngFor="let task of dataSource;let i = index">
+
+                    <div class="card-c" >
+                        <div class="header-c" (click)="collapse(i)">
+                            <div>
+                                <img class="header-c-img" src="./assets/task.png">
+                            </div>
+                            <div class="header-c-text">
+                                <p>Title : {{task.title}}</p>
+                                <p>Status : {{task.status}}</p>
+
+                            </div>
+                            <div class="header-c-icon">
+                                <mat-icon>{{i===selectedCollapse?'keyboard_arrow_down':'keyboard_arrow_right'}} </mat-icon>
+                            </div>
+
+
+                        </div>
+
+                        <div class="collapse" [ngClass]="{
+                            'show':i===selectedCollapse }">
+                            <div class="body-c">
+                                <strong>Created at : </strong>{{task.createdat|date }}<br>
+                                <strong>Description : </strong> {{task.description}}
+                                <div class="body-c-conrtols">
+                                    <button color="primary" mat-raised-button type="button" (click)="editTask(task.id)">
+                                           Edit &nbsp;&nbsp;<mat-icon> edit</mat-icon>
+                                        </button>
+                                    <button color="primary" mat-raised-button type="button" (click)="opendeleteTaskDialog(task.id)">
+                                          Delete &nbsp;&nbsp; <mat-icon> delete_outline</mat-icon>
+                                        </button>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+<button class="fab" mat-fab color="primary" (click)="create()">
+  <mat-icon>add_circle</mat-icon>
+</button>
