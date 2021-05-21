@@ -26,3 +26,7 @@ Navigate to `http://localhost:4200/`. The app will automatically reload if you c
 ## Create task page 
 
 ![create](https://github.com/abdelghanihanihani/angular-tasktodo-app/blob/master/src/assets/create.PNG)
+
+## Online Demo
+
+You can try the online demo of this Angular 11 CRUD [here](https://angular-tasktodo-app.herokuapp.com/).
